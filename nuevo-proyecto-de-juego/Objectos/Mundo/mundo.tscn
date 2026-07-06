@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://d1j80mt7j5h3t"]
+
+[ext_resource type="Texture2D" uid="uid://hdrys2vuwpws" path="res://PNG/Battleground1/Bright/Battleground1.png" id="1_pa6ln"]
+[ext_resource type="PackedScene" uid="uid://e1yp4yk7reky" path="res://Objectos/personajes/personaje.tscn" id="2_gd0wi"]
+
+[node name="Mundo" type="Node2D" unique_id=528283399]
+
+[node name="Battleground1" type="Sprite2D" parent="." unique_id=1894425370]
+position = Vector2(459, 258.5)
+scale = Vector2(0.5552083, 0.5324074)
+texture = ExtResource("1_pa6ln")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=942819365]
+
+[node name="personaje" parent="Node2D" unique_id=216833137 instance=ExtResource("2_gd0wi")]
+position = Vector2(150, 141)

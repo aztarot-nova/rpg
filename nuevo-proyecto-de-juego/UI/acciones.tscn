@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://k4s7h6kdhhw6"]
+
+[ext_resource type="Script" uid="uid://bt686s8nu3162" path="res://UI/acciones.gd" id="1_vul31"]
+
+[node name="Acciones" type="Control" unique_id=518463009]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vul31")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1922321242]
+custom_minimum_size = Vector2(180, 0)
+custom_maximum_size = Vector2(180, -1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0050000004
+anchor_right = 0.0050000004
+offset_left = -4.8
+offset_right = 35.2
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=282001832]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1662238951]
+propagate_maximum_size = false
+layout_mode = 2
+
+[node name="B_Atacar" type="Button" parent="PanelContainer/VBoxContainer" unique_id=770715187]
+layout_mode = 2
+text = "Atacar"
+
+[node name="B_Defender" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1949931791]
+layout_mode = 2
+text = "Defender"
+
+[node name="B_Cerrar" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1429658437]
+layout_mode = 2
+text = "Cerrar"
+
+[connection signal="button_down" from="PanelContainer/VBoxContainer/B_Atacar" to="." method="_on_b_atacar_button_down"]
+[connection signal="button_down" from="PanelContainer/VBoxContainer/B_Defender" to="." method="_on_b_defender_button_down"]
+[connection signal="button_down" from="PanelContainer/VBoxContainer/B_Cerrar" to="." method="_on_b_cerrar_button_down"]
