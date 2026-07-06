@@ -265,7 +265,7 @@ offset_left = -7.0
 offset_top = -5.0
 offset_right = 93.0
 offset_bottom = 131.5
-pivot_offset = Vector2(52, 10.5)
+pivot_offset = Vector2(42, 13)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_de63c")
 
 [node name="seleccionar" type="Polygon2D" parent="." unique_id=306630158]

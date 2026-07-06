@@ -21,6 +21,7 @@ func _on_b_atacar_button_down() -> void:
 
 func _on_b_defender_button_down() -> void:
 	cerrar_menu()
+	Manager.defender_personaje()
 	print("Defender")
 
 

@@ -7,11 +7,12 @@ signal daño_recibido()
 var salud_maxima : float
 var salud_actual : float
 var sin_salud : bool = false
+var armadura : float
 
-func recibir_daño(cantidad : float):
+func recibir_daño(cantidad: float, prob: float, aum: float):
 	if sin_salud:
 		return
-	salud_actual -= cantidad
+	salud_actual -= calcular_daño(cantidad, prob, aum)
 	
 	actualizar_progress_bar()
 	
@@ -21,6 +22,14 @@ func recibir_daño(cantidad : float):
 	else:
 		emit_signal("daño_recibido")
 
+func calcular_daño(cantidad: float, prob: float, aum: float ) -> float:
+	var resultado : float = cantidad
+	### calcular daño
+	if (randf_range(0,1)) >= prob:
+		resultado = cantidad * aum
+	### calcular armadura
+	resultado = resultado / armadura
+	return resultado
 
 func actualizar_progress_bar():
 	if  progress_bar:
