@@ -1,16 +1,45 @@
 [gd_scene format=3 uid="uid://d1j80mt7j5h3t"]
 
+[ext_resource type="Script" uid="uid://doyppl0q6b4ls" path="res://Objectos/Mundo/mundo.gd" id="1_ds4ul"]
 [ext_resource type="Texture2D" uid="uid://hdrys2vuwpws" path="res://PNG/Battleground1/Bright/Battleground1.png" id="1_pa6ln"]
 [ext_resource type="PackedScene" uid="uid://e1yp4yk7reky" path="res://Objectos/personajes/personaje.tscn" id="2_gd0wi"]
+[ext_resource type="Resource" uid="uid://dp7ai5651rh6r" path="res://Data/jugador/Esqueleto.tres" id="3_88cwo"]
+[ext_resource type="Resource" uid="uid://choiobbevqwfu" path="res://Data/Enemigos/esqueleto enemigo.tres" id="4_ds4ul"]
 
 [node name="Mundo" type="Node2D" unique_id=528283399]
+script = ExtResource("1_ds4ul")
 
 [node name="Battleground1" type="Sprite2D" parent="." unique_id=1894425370]
-position = Vector2(459, 258.5)
+position = Vector2(480, 275)
 scale = Vector2(0.5552083, 0.5324074)
 texture = ExtResource("1_pa6ln")
+
+[node name="Camera2D" type="Camera2D" parent="Battleground1" unique_id=818983309]
 
 [node name="Node2D" type="Node2D" parent="." unique_id=942819365]
 
 [node name="personaje" parent="Node2D" unique_id=216833137 instance=ExtResource("2_gd0wi")]
-position = Vector2(150, 141)
+position = Vector2(20, 145)
+data = ExtResource("3_88cwo")
+
+[node name="personaje3" parent="Node2D" unique_id=2046822644 instance=ExtResource("2_gd0wi")]
+position = Vector2(133, 244)
+data = ExtResource("3_88cwo")
+
+[node name="personaje4" parent="Node2D" unique_id=1977655018 instance=ExtResource("2_gd0wi")]
+position = Vector2(13, 344)
+data = ExtResource("3_88cwo")
+
+[node name="personaje2" parent="Node2D" unique_id=258367238 instance=ExtResource("2_gd0wi")]
+position = Vector2(673, 150)
+data = ExtResource("4_ds4ul")
+
+[node name="personaje5" parent="Node2D" unique_id=989507666 instance=ExtResource("2_gd0wi")]
+position = Vector2(674, 293)
+data = ExtResource("4_ds4ul")
+
+[node name="inciarMundo" type="Timer" parent="." unique_id=894690125]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="inciarMundo" to="." method="_on_inciar_mundo_timeout"]

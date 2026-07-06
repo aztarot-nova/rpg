@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://ch40qwygv73f6" path="res://Skeleton_Archer/Hurt.png" id="3_npa0c"]
 [ext_resource type="Texture2D" uid="uid://bcm5r8vqo8odb" path="res://Skeleton_Archer/Dead.png" id="4_6hlgi"]
 [ext_resource type="Texture2D" uid="uid://cgs8v82tqgq0h" path="res://Skeleton_Archer/Idle.png" id="5_xgip6"]
+[ext_resource type="PackedScene" uid="uid://k4s7h6kdhhw6" path="res://UI/acciones.tscn" id="7_npa0c"]
+[ext_resource type="PackedScene" uid="uid://bdhxmi7qvjt5g" path="res://Objectos/Componentes/componentes_salud.tscn" id="8_6hlgi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_de63c"]
 
@@ -137,7 +139,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"Ataque",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -226,6 +228,13 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_de63c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_de63c"]
+bg_color = Color(0.70147675, 0.11603787, 0.048936233, 0.37254903)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkhun"]
+
 [node name="personaje" type="CharacterBody2D" unique_id=216833137]
 scale = Vector2(2, 2)
 motion_mode = 1
@@ -235,6 +244,52 @@ script = ExtResource("1_r8i04")
 shape = SubResource("CapsuleShape2D_de63c")
 
 [node name="animacion" type="AnimatedSprite2D" parent="." unique_id=632228677]
-scale = Vector2(2, 2)
+position = Vector2(33.5, 3)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_js6p3")
-animation = &"idle"
+animation = &"Ataque"
+frame = 4
+frame_progress = 1.0
+offset = Vector2(8.166666, -2)
+
+[node name="Acciones" parent="." unique_id=518463009 instance=ExtResource("7_npa0c")]
+z_index = 10
+offset_left = 103.0
+offset_top = 7.5
+offset_right = 111.791214
+offset_bottom = 71.23626
+scale = Vector2(0.455, 0.455)
+
+[node name="Panel" type="Panel" parent="." unique_id=2127024225]
+offset_left = -7.0
+offset_top = -5.0
+offset_right = 93.0
+offset_bottom = 131.5
+pivot_offset = Vector2(52, 10.5)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_de63c")
+
+[node name="seleccionar" type="Polygon2D" parent="." unique_id=306630158]
+position = Vector2(42.5, -52)
+scale = Vector2(1.1555556, 1.7727273)
+color = Color(1, 0, 0, 1)
+offset = Vector2(26.5, 27)
+polygon = PackedVector2Array(-38, -30.5, -15.5, -30.5, -15.5, -30.5, -26.5, -19.5, -26.5, -19.5)
+
+[node name="componenteSalud" parent="." unique_id=487731082 node_paths=PackedStringArray("progress_bar") instance=ExtResource("8_6hlgi")]
+progress_bar = NodePath("../Salud")
+
+[node name="Salud" type="ProgressBar" parent="." unique_id=142729842]
+offset_left = 2.0
+offset_top = -27.5
+offset_right = 85.5
+offset_bottom = -13.0
+pivot_offset = Vector2(41, 28.5)
+theme_override_styles/background = SubResource("StyleBoxFlat_de63c")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nkhun")
+max_value = 1.0
+show_percentage = false
+
+[connection signal="animation_finished" from="animacion" to="." method="_on_animacion_animation_finished"]
+[connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
+[connection signal="daño_recibido" from="componenteSalud" to="." method="_on_componente_salud_daño_recibido"]
+[connection signal="salud_cero" from="componenteSalud" to="." method="_on_componente_salud_salud_cero"]

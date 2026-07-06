@@ -1,17 +1,28 @@
 extends Control
 
-func Abrir_Menu()
+func _ready():
+	cerrar_menu()
 
-func alternar_vista():
-	visible != visible
+func abrir_Menu():
+	for p in get_tree().get_nodes_in_group("Jugador"):
+		p.get_node("Acciones").cerrar_menu()
+	visible = true
+	
+
+func cerrar_menu():
+	visible = false 
+
 
 func _on_b_atacar_button_down() -> void:
-	pass # Replace with function body.
+	cerrar_menu()
+	Manager.mostrar_seleccion()
+	print("Atacar")
 
 
 func _on_b_defender_button_down() -> void:
-	pass # Replace with function body.
+	cerrar_menu()
+	print("Defender")
 
 
 func _on_b_cerrar_button_down() -> void:
-	pass # Replace with function body.
+	cerrar_menu()
